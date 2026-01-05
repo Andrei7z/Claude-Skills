@@ -17,6 +17,14 @@ Most columns follow the pattern: `[Type]_[Asset]_[Agg|Diff]`
 - **_Agg** = Cumulative/aggregate meter reading
 - **_Diff** = Interval consumption (use this for energy analysis)
 
+## Column Spelling Notes (LCF6 vs LCF5)
+| LCF6 | LCF5 | Note |
+|------|------|------|
+| `SetP_GH` | `SetpP_GHN`, `SetpP_GHS` | Single P in LCF6, double P in LCF5 |
+| `Elec_GH` | `Elec_GHN`, `Elec_GHS` | Single meter in LCF6, North/South in LCF5 |
+| `CO2_Chrg_Grow_KG_Diff` | `CO2_Chrg_Grow_KG_diff` | Capitalised `Diff` in LCF6, lowercase in LCF5 |
+| `CO2_Chrg_Grow_HRS_Diff` | `CO2_Chrg_Grow_HRS_diff` | Capitalised `Diff` in LCF6, lowercase in LCF5 |
+
 ## Equipment Categories
 
 ### CHP Engines (2 units: CHP1, CHP2)
@@ -49,7 +57,7 @@ Most columns follow the pattern: `[Type]_[Asset]_[Agg|Diff]`
 ### Glasshouse Electricity
 | Column | Meaning |
 |--------|---------|
-| Elec_GH | Glasshouse consumption |
+| Elec_GH | Glasshouse consumption (single meter) |
 
 ### Heat Distribution
 | Column | Meaning |
@@ -76,7 +84,7 @@ Most columns follow the pattern: `[Type]_[Asset]_[Agg|Diff]`
 | Temp_LTIn / Temp_LTOut | Low-temp circuit in/out |
 | Temp_GH | Glasshouse temperature |
 | Temp_Ambient_OS | Outside ambient temperature |
-| SetP_GH | Glasshouse setpoint |
+| SetP_GH | Glasshouse setpoint (single P) |
 
 ### Status Flags (bit columns)
 | Column | Meaning |
@@ -88,10 +96,11 @@ Most columns follow the pattern: `[Type]_[Asset]_[Agg|Diff]`
 | Facility_Lead | Facility demand leading |
 
 ## Key Differences from LCF5
-- **2 CHP engines** (not 3)
-- **13 heat pumps** (not 16)
-- **Single glasshouse meter** (`Elec_GH`) instead of North/South split
-- **Single setpoint** (`SetP_GH`) instead of North/South
+- **2 CHP engines** (LCF5 has 3)
+- **13 heat pumps** (LCF5 has 16)
+- **Single glasshouse meter** `Elec_GH` (LCF5 has `Elec_GHN` / `Elec_GHS`)
+- **Single setpoint** `SetP_GH` (LCF5 has `SetpP_GHN` / `SetpP_GHS`)
+- **Capitalised `_Diff`** on CO2 charging columns (LCF5 uses lowercase `_diff`)
 
 ## Common Query Patterns
 
